@@ -52,6 +52,7 @@ import {
   writeVirtualLoadingIndicatorModule,
 } from "./loading-indicator"
 import { renderDevHTML } from "./dev-ssr/render-dev-html"
+import { ROUTES_DIRECTORY } from "../constants"
 
 type ActivityTracker = any // TODO: Replace this with proper type once reporter is typed
 
@@ -517,7 +518,7 @@ module.exports = {
           page: pathObj,
           skipSsr: req.query[`skip-ssr`] || false,
           store,
-          htmlComponentRendererPath: `${program.directory}/.cache/_routes/render-page.js`,
+          htmlComponentRendererPath: `${program.directory}/${ROUTES_DIRECTORY}render-page.js`,
           directory: program.directory,
         })
         res.status(200).send(renderResponse)
@@ -586,7 +587,7 @@ module.exports = {
             skipSsr: true,
             store,
             error: message,
-            htmlComponentRendererPath: `${program.directory}/.cache/_routes/render-page.js`,
+            htmlComponentRendererPath: `${program.directory}/${ROUTES_DIRECTORY}render-page.js`,
             directory: program.directory,
           })
 
