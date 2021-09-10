@@ -165,6 +165,10 @@ export async function renderHTML({
     pageData,
     staticQueryContext,
     ...data.templateDetails.assets,
+    extraPageMetadata:
+      data.page.mode && data.results.serverData !== `SSR`
+        ? `window.serverData=${JSON.stringify(data.results.serverData)};`
+        : undefined,
   })
 
   return results.html

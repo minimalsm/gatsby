@@ -141,6 +141,13 @@ export class BaseLoader {
             throw new Error(`not a valid pageData response`)
           }
 
+          if (window.serverData) {
+            // merge inlined serverData for page-data response for initial page
+            // and unset window.serverData
+            jsonPayload.result.serverData = window.serverData
+            window.serverData = null
+          }
+
           return Object.assign(loadObj, {
             status: PageResourceStatus.Success,
             payload: jsonPayload,
